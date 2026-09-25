@@ -31,6 +31,10 @@ function PaymentCallbackContent() {
     if (processingRef.current) return;
     processingRef.current = true;
 
+    // These are guaranteed to be strings after the check above.
+    const verifiedTransactionId = transactionId;
+    const verifiedTxRef = txRef;
+
     async function processPayment() {
       try {
         if (status === "cancelled" || status === "failed") {
@@ -40,8 +44,8 @@ function PaymentCallbackContent() {
 
         const verifyResponse = await fetch(
           `/api/flutterwave/verify?transaction_id=${encodeURIComponent(
-            transactionId
-          )}&tx_ref=${encodeURIComponent(txRef)}`,
+            verifiedTransactionId
+          )}&tx_ref=${encodeURIComponent(verifiedTxRef)}`,
           {
             method: "GET",
             cache: "no-store",
@@ -69,8 +73,8 @@ function PaymentCallbackContent() {
                 "Content-Type": "application/json",
               },
               body: JSON.stringify({
-                transactionId,
-                txRef,
+                transactionId: verifiedTransactionId,
+                txRef: verifiedTxRef,
               }),
             }
           );
@@ -116,8 +120,8 @@ function PaymentCallbackContent() {
               },
               body: JSON.stringify({
                 userId: metadataUserId,
-                transactionId,
-                txRef,
+                transactionId: verifiedTransactionId,
+                txRef: verifiedTxRef,
               }),
               cache: "no-store",
             }
@@ -149,6 +153,7 @@ function PaymentCallbackContent() {
         setMessage("Unable to determine payment type.");
       } catch (error) {
         console.error("Payment processing error:", error);
+
         setMessage(
           "Something went wrong while processing payment."
         );
@@ -164,6 +169,7 @@ function PaymentCallbackContent() {
         <h1 className="text-3xl font-bold text-sky-700">
           Payment Status
         </h1>
+
         <p className="mt-5 text-lg">{message}</p>
       </div>
     </main>
