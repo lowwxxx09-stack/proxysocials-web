@@ -23,17 +23,19 @@ function PaymentCallbackContent() {
   const processingRef = useRef(false);
 
   useEffect(() => {
-    if (!transactionId || !txRef) {
+    if (processingRef.current) return;
+
+    if (transactionId === null || txRef === null) {
       setMessage("No Flutterwave transaction information found.");
       return;
     }
 
-    if (processingRef.current) return;
-    processingRef.current = true;
+    // Explicitly create strings so TypeScript knows these
+    // values cannot be null inside the async function.
+    const verifiedTransactionId: string = transactionId;
+    const verifiedTxRef: string = txRef;
 
-    // These are guaranteed to be strings after the check above.
-    const verifiedTransactionId = transactionId;
-    const verifiedTxRef = txRef;
+    processingRef.current = true;
 
     async function processPayment() {
       try {
