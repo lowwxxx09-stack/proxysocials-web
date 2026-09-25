@@ -1,0 +1,379 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ProxySocials Hero Animations */
+
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(35px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroFadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroFloat {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes heroPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+.hero-fade-up {
+  opacity: 0;
+  animation: heroFadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hero-fade-down {
+  opacity: 0;
+  animation: heroFadeDown 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Staggered entrance */
+
+.delay-100 {
+  animation-delay: 0.1s;
+}
+
+.delay-200 {
+  animation-delay: 0.2s;
+}
+
+.delay-300 {
+  animation-delay: 0.3s;
+}
+
+.delay-400 {
+  animation-delay: 0.4s;
+}
+
+.delay-500 {
+  animation-delay: 0.5s;
+}
+
+.delay-600 {
+  animation-delay: 0.6s;
+}
+
+/* Button interaction */
+
+.hero-fade-up a {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-fade-up,
+  .hero-fade-down {
+    opacity: 1;
+    animation: none;
+  }
+}
+
+/* ProxySocials Hero Background Glows */
+
+.hero-glow {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 9999px;
+  background: rgba(14, 165, 233, 0.14);
+  filter: blur(45px);
+  animation: heroGlowFloat 6s ease-in-out infinite;
+}
+
+.hero-glow-one {
+  top: 5%;
+  left: -80px;
+}
+
+.hero-glow-two {
+  right: -80px;
+  bottom: 5%;
+  animation-delay: 2s;
+}
+
+@keyframes heroGlowFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -25px, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-glow {
+    animation: none;
+  }
+}
+
+/* ProxySocials Services Animations */
+
+@keyframes servicesFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes servicesFadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.services-fade-up {
+  opacity: 0;
+  animation: servicesFadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.services-fade-down {
+  opacity: 0;
+  animation: servicesFadeDown 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.services-delay-100 {
+  animation-delay: 0.1s;
+}
+
+.services-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.services-delay-300 {
+  animation-delay: 0.3s;
+}
+
+.services-delay-400 {
+  animation-delay: 0.4s;
+}
+
+.services-delay-500 {
+  animation-delay: 0.5s;
+}
+
+/* Service card entrance */
+
+.service-card {
+  opacity: 0;
+  animation: servicesFadeUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Service image hover */
+
+.service-card img {
+  transition: transform 0.5s ease;
+}
+
+.service-card:hover img {
+  transform: scale(1.04);
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .services-fade-up,
+  .services-fade-down,
+  .service-card {
+    opacity: 1;
+    animation: none;
+  }
+
+  .service-card img {
+    transition: none;
+  }
+
+  .service-card:hover img {
+    transform: none;
+  }
+}
+
+/* LOGIN PAGE ANIMATIONS */
+
+@keyframes loginCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes loginFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes loginFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.login-card {
+  animation: loginCardIn 0.7s ease-out both;
+}
+
+.login-icon {
+  animation: loginFadeUp 0.6s ease-out 0.15s both,
+    loginFloat 4s ease-in-out 1s infinite;
+}
+
+.login-title {
+  animation: loginFadeUp 0.6s ease-out 0.25s both;
+}
+
+.login-subtitle {
+  animation: loginFadeUp 0.6s ease-out 0.35s both;
+}
+
+.login-field {
+  animation: loginFadeUp 0.6s ease-out 0.4s both;
+}
+
+.login-delay-1 {
+  animation: loginFadeUp 0.6s ease-out 0.5s both;
+}
+
+.login-button-wrapper {
+  animation: loginFadeUp 0.6s ease-out 0.6s both;
+}
+
+.login-footer {
+  animation: loginFadeUp 0.6s ease-out 0.7s both;
+}
+
+.login-glow {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 9999px;
+  background: rgba(14, 165, 233, 0.12);
+  filter: blur(60px);
+  animation: loginFloat 6s ease-in-out infinite;
+}
+
+.login-glow-one {
+  top: 10%;
+  left: 10%;
+}
+
+.login-glow-two {
+  right: 10%;
+  bottom: 10%;
+  animation-delay: 2s;
+}
+
+/* ================================
+   DASHBOARD ANIMATIONS
+================================ */
+
+@keyframes dashboardFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dashboard-fade-up {
+  animation: dashboardFadeUp 0.7s ease-out both;
+}
+
+.dashboard-delay-1 {
+  animation-delay: 0.15s;
+}
+
+.dashboard-delay-2 {
+  animation-delay: 0.3s;
+}
